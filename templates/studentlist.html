@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>students list</title>
+
+    <style>
+        body{
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        table{
+            margin-left: 620px;
+            margin-top: 200px;
+        }
+        h2{
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>All Students</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+        </tr>
+    {% for student in students %}           <!-- python concept with django syntax -->
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.course }}</td>
+            <td><a href="{% url 'edit_student' student.pk %}">Edit</a></td>
+            <td><a href="{% url 'delete_student' student.pk %}">Delete</a></td>
+
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="3">No Students Found</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
